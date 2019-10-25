@@ -81,6 +81,7 @@ Activity发生内存泄漏的优化建议：<br>
 ```
 //保存Activity
 WeakReference<Activity> weakReference = new WeakReference<>(activity);
+
 //获取Activity
 Activity activity = weakReference.get();
 ```
