@@ -2,6 +2,10 @@
 
   总结了一些在Android开发中关于内存管理和优化的方法。
   
+# 前言
+  
+  在Android开发中大多数是使用Java的api，由于程序要在移动设备上运行，对于流畅度、性能和内存使用很苛刻。于是，Google提供了一套专门在android上开发的api，减少过多的内存消耗从而提高性能，所以建议在开发时尽量使用Google提供的api。
+  
 ## 数组与列表的选择
 
 *数组*<br>
@@ -41,6 +45,11 @@
  2、ArrayMap使用两个较小的数组，而HashMap需要建立一个较大的数组，所以在内存短缺情况下或优化性能下，建议使用ArrayMap;<br>
 
 ## Context上下文的使用
+
+Context使用不切当，很容易发生内存泄漏。
+
+1、跟UI相关的Context，使用由Activity提供的Context;<br>
+2、除了UI相关的，建议使用由Application提供的Context;<br>
 
 
 
