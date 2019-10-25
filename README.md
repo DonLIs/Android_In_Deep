@@ -77,13 +77,18 @@ Application的Context是伴随着整个应用而存在的，它的生命周期�
 我们多数的定义对象都是强引用，没有指定对象的引用类型时，它就默认是强引用；<br>
   
 Activity发生内存泄漏的优化建议：<br>
-一般Activity发生内存泄漏的原因是它被一个比它更长生命周期的对象引用而在销毁时无法被系统GC回收，我们可以使用弱引用（WeakReference）保存Activity的引用，当Activity销毁后，系统会扫描内存区域直到把它回收；<br>
+一般Activity发生内存泄漏的原因是它被一个比它更长生命周期的对象引用而在销毁时无法被系统GC回收，我们可以使用弱引用（WeakReference）保存Activity的引用,在Activity销毁时在onDestroy方法中清空引用;如果遇到系统崩溃或忘记清理，当Activity销毁后，系统会扫描内存区域直到把它回收；<br>
 ```
 //保存Activity
 WeakReference<Activity> weakReference = new WeakReference<>(activity);
 
 //获取Activity
 Activity activity = weakReference.get();
+
+//清理引用
+weakReference.clear();
+weakReference = null;
+activity = null;
 ```
 
 
