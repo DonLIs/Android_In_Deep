@@ -59,7 +59,7 @@ Google为Android量身定制的Android.util，包含SparseArray系列；<br>
 ## Context上下文的使用
 
 Context使用不切当，很容易发生内存泄漏。<br>
-Context创建的个数是等于Activity的数量加1，即 Sum(Context) = Sum(Activity) + 1;<br>
+Context创建的个数是等于Activity的数量加Service的数量加1，即 Sum(Context) = Sum(Activity) + Sum(Service) + 1;<br>
 Activity的Context被一个生命周期更长的对象持有，一旦Activity被销毁了，因为Context被长生命周期对象持有无法释放，所以无法被销毁，保留在内存中；<br>
 Application的Context是伴随着整个应用而存在的，它的生命周期算是最长的，一旦应用退出了运行线程，这个Context与跟它联系的对象也会被释放掉；
 
