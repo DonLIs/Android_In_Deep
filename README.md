@@ -21,10 +21,10 @@
   * 查询速度较慢，需要一个个遍历去查找
   
 > 总结:
-* 1、数组的查询速度比链表快一些;<br>
-2、数组长度固定，而链表长度不固定灵活性更强;<br>
-3、数组比较适合查询操作，插入操作比较麻烦;<br>
-4、链表在插入数据方面比数组更灵活；<br>
+* 数组的查询速度比链表快一些;
+* 数组长度固定，而链表长度不固定灵活性更强;
+* 数组比较适合查询操作，插入操作比较麻烦;
+* 链表在插入数据方面比数组更灵活；
 
 ## HashMap与ArrayMap
 
@@ -40,8 +40,8 @@
   * 功能上跟HashMap差不多
   
 > 总结：
- 1、ArrayMap的插入和删除操作稍微比HashMap慢一些，但是在数据量1000以内，可以忽略不计;<br>
- 2、ArrayMap使用两个较小的数组，而HashMap需要建立一个较大的数组，所以在内存短缺情况下或优化性能下，建议使用ArrayMap;<br>
+ * ArrayMap的插入和删除操作稍微比HashMap慢一些，但是在数据量1000以内，可以忽略不计;
+ * ArrayMap使用两个较小的数组，而HashMap需要建立一个较大的数组，所以在内存短缺情况下或优化性能下，建议使用ArrayMap;
  
 ## 数据结构的建议
 
@@ -57,26 +57,30 @@
 
 ## Context上下文的使用
 
-Context使用不切当，很容易发生内存泄漏。<br>
-Context创建的个数是等于Activity的数量加Service的数量加1，即 Sum(Context) = Sum(Activity) + Sum(Service) + 1;<br>
-Activity的Context被一个生命周期更长的对象持有，一旦Activity被销毁了，因为Context被长生命周期对象持有无法释放，所以无法被销毁，保留在内存中；<br>
-Application的Context是伴随着整个应用而存在的，它的生命周期算是最长的，一旦应用退出了运行线程，这个Context与跟它联系的对象也会被释放掉；
+> Context使用不切当，很容易发生内存泄漏
+* Context创建的个数是等于Activity的数量加Service的数量加1，即 Sum(Context) = Sum(Activity) + Sum(Service) + 1；
+* Activity的Context被一个生命周期更长的对象持有，一旦Activity被销毁了，因为Context被长生命周期对象持有无法释放，所以无法被销毁，保留在内存中；
+* Application的Context是伴随着整个应用而存在的，它的生命周期算是最长的，一旦应用退出了运行线程，这个Context与跟它联系的对象也会被释放掉；
 
-1、跟UI相关的Context，使用由Activity提供的Context;<br>
-2、除了UI相关的，建议使用由Application提供的Context;<br>
+> 总结：
+* 跟UI相关的Context，使用由Activity提供的Context；
+* 除了UI相关的，建议使用由Application提供的Context；
 
 ## 对象引用
 
 > 四大引用：
-1、强引用（StrongRefernce）<br>
-2、软引用（SoftReference）<br>
-3、弱引用（WeakReference）<br>
-4、虚引用（PhantomReference）<br>
+* 强引用（StrongRefernce）
+* 软引用（SoftReference）
+* 弱引用（WeakReference）
+* 虚引用（PhantomReference）
 
-我们多数的定义对象都是强引用，没有指定对象的引用类型时，它就默认是强引用；<br>
+> 我们多数的定义对象都是强引用，没有指定对象的引用类型时，它就默认是强引用；
   
-Activity发生内存泄漏的优化建议：<br>
-一般Activity发生内存泄漏的原因是它被一个比它更长生命周期的对象引用而在销毁时无法被系统GC回收，我们可以使用弱引用（WeakReference）保存Activity的引用，在Activity销毁时在onDestroy方法中清空引用；如果遇到系统崩溃或忘记清理，当Activity销毁后，系统会扫描内存区域直到把它回收；<br>
+> Activity发生内存泄漏的优化建议：
+```
+    一般Activity发生内存泄漏的原因是它被一个比它更长生命周期的对象引用而在销毁时无法被系统GC回收，我们可以使用弱引用（WeakReference）保存Activity的引用，在Activity销毁时在onDestroy方法中清空引用；如果遇到系统崩溃或忘记清理，当Activity销毁后，系统会扫描内存区域直到把它回收；
+```
+
 ```
 //保存Activity
 WeakReference<Activity> weakReference = new WeakReference<>(activity);
