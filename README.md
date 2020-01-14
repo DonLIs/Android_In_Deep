@@ -14,13 +14,13 @@
   * 按索引查询速度较快
   * 插入和删除操作相对较慢
 
-*链表(Linked)*
+> 链表(Linked)
   * 占用的内存空间是散乱的
   * 长度可增长
   * 插入和删除操作速度较快
   * 查询速度较慢，需要一个个遍历去查找
   
-  _总结：_<br>
+> 总结:
 1、数组的查询速度比链表快一些;<br>
 2、数组长度固定，而链表长度不固定灵活性更强;<br>
 3、数组比较适合查询操作，插入操作比较麻烦;<br>
@@ -28,25 +28,25 @@
 
 ## HashMap与ArrayMap
 
-*HashMap*<br>
+> HashMap
   * 散列型链表（数组+链表）
   * 根据key计算出hash值来指定value的存放位置
   * 为了尽量避免hash冲突而创建一个较大的数组
   * hash值相同时以链表的形式存储
 
-*ArrayMap*<br>
+> ArrayMap
   * 使用两个小数组存储数据
   * 占用连续的内存空间
   * 功能上跟HashMap差不多
   
-   _总结：_<br>
+> 总结：
  1、ArrayMap的插入和删除操作稍微比HashMap慢一些，但是在数据量1000以内，可以忽略不计;<br>
  2、ArrayMap使用两个较小的数组，而HashMap需要建立一个较大的数组，所以在内存短缺情况下或优化性能下，建议使用ArrayMap;<br>
  
 ## 数据结构的建议
 
-Google为Android量身定制的Android.util，包含SparseArray系列；<br>
-尽量使用以下类替换使用HashMap（数据量在1000以内，性能跟HashMap差不多，但HashMap占用内存较大）<br>
+* Google为Android量身定制的Android.util，包含SparseArray系列
+* 尽量使用以下类替换使用HashMap（数据量在1000以内，性能跟HashMap差不多，但HashMap占用内存较大）
   * SparseArray
   * SparseBooleanArray
   * SparseIntArray
@@ -67,7 +67,7 @@ Application的Context是伴随着整个应用而存在的，它的生命周期�
 
 ## 对象引用
 
-四大引用：<br>
+> 四大引用：
 1、强引用（StrongRefernce）<br>
 2、软引用（SoftReference）<br>
 3、弱引用（WeakReference）<br>
